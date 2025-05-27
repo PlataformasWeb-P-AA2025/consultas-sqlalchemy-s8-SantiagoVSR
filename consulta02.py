@@ -1,7 +1,13 @@
-from sqlalchemy import func
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from config import cadena_base_datos
+from clases import Departamento, Instructor, Curso, Estudiante, Inscripcion, Tarea, Entrega
 
-# Suponiendo que ya tienes una sesión activa llamada 'session'
+# sesión activa llamada 'session'
 
+engine = create_engine(cadena_base_datos)
+Session = sessionmaker(bind=engine)
+session = Session()
 # Obtener todos los departamentos
 departamentos_con_bajas_notas = session.query(Departamento).all()
 
